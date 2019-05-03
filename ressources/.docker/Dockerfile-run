@@ -1,0 +1,4 @@
+FROM inf2610-code-runner-base-image
+
+COPY codes codes
+CMD cd codes/$DIR && make && ./a.out

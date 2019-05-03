@@ -1,0 +1,6 @@
+# Dockerfile à modifier pour ajouter des librairies et utilitaires nécessaires
+# à la compilation de tous les codes
+FROM ubuntu:18.04
+
+RUN apt-get update
+RUN apt-get install -y build-essential
