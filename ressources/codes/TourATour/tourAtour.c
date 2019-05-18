@@ -30,7 +30,7 @@ int main()
   sleep(10); 
   for(i=0; i<n; i++) pthread_cancel(tid[i]);
   for(i=0; i<n; i++) pthread_join(tid[i],NULL);
-
+    printf("FIN\n");
 return 0;
 }
 
