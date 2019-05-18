@@ -12,7 +12,7 @@ void* decrement(void * x)
 	for(int j=0; j<10000; j++)
 	{ r=r-1;} 
 	glob = r ;
-	printf("ici decrement[%u], glob = %d\n", pthread_self(),glob);
+	printf("ici decrement[%lu], glob = %d\n", pthread_self(),glob);
 	// sem_post(&mutex);
 	pthread_exit(NULL);
  }
@@ -25,7 +25,7 @@ void* increment (void * x)
 	for(int j=0; j<10000; j++)
 	{ r=r+1;}
 	glob = r;
-	printf("ici increment[%u], glob = %d\n", pthread_self(), glob);
+	printf("ici increment[%lu], glob = %d\n", pthread_self(), glob);
 	//sem_post(&mutex);
 	pthread_exit(NULL);
 }
@@ -40,8 +40,8 @@ int main( )
 //	printf("ici main: creation du thread[%u] avec succes\n",tid1);
 	// creation d'un thread pour decrement
 	if ( pthread_create(&tid2, NULL, decrement, NULL) != 0)   return -1;
-	 printf("ici main: creation du thread[%u] avec succes\n",tid1);
-	printf("ici main: creation du thread [%u] avec succes\n",tid2);
+	 printf("ici main: creation du thread[%lu] avec succes\n",tid1);
+	printf("ici main: creation du thread [%lu] avec succes\n",tid2);
 	pthread_join(tid1,NULL); // attendre la fin dun thread
 	pthread_join(tid2,NULL);
 	printf("ici main : fin des threads, glob = %d \n",glob);
