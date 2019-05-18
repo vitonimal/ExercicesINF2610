@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Utilisation: ./run.sh DIRNAME
+# Utilisation: ./run.sh DIRNAME ARGS
 # Arguments:
 # - DIRNAME est le nom du sous-répertoire de `codes` à compiler; on suppose que
 #   ce répertoire contient un Makefile qui construit un exécutable nommé `a.out`
