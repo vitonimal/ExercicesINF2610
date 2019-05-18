@@ -7,4 +7,4 @@
 
 docker build --no-cache -t inf2610-code-runner-image -f \
     .docker/Dockerfile-run . 2>&1 > /dev/null
-docker run -e "DIR=$1" inf2610-code-runner-image
+docker run -e "DIR=$1" inf2610-code-runner-image "${@:2}"
