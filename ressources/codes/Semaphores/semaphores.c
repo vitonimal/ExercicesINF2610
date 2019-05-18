@@ -5,8 +5,8 @@
 #define val 1
 sem_t*  mutex;  // sémaphore
 long long var_glob=0;
-void* increment( void *);
-void* decrement( void *);
+void* increment();
+void* decrement();
 int main ( )
 {       pthread_t threadA, threadB;
         int i=1;
@@ -25,7 +25,7 @@ int main ( )
      }
       return 0;
 }
-void* decrement(void *)
+void* decrement()
 {       // attendre l'autorisation d'accès
         long long i; int j; printf("ici decrement %d\n", sem_getvalue(mutex,&j));
         sem_wait(mutex);  
@@ -34,7 +34,7 @@ void* decrement(void *)
         sem_post(mutex);
         return (NULL);
 }
-void* increment (void *)
+void* increment ()
 {       long long i; int j;
         sem_wait(mutex);
          for(i=0;i<100;i++)  var_glob=var_glob + 1;
