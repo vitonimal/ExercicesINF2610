@@ -1,4 +1,5 @@
 FROM inf2610-code-runner-base-image
 
 COPY codes codes
+COPY env_config env_config
 CMD cd codes/$DIR && make && ./a.out

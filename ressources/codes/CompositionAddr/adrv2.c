@@ -1,5 +1,7 @@
+#include "../../env_config/env_config.c"
 #include <stdio.h>
 #include <stdlib.h>
+
 struct adrv_t
  {  unsigned long pagenum;
     unsigned long offset; 

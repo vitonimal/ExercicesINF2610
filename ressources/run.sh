@@ -7,4 +7,6 @@
 
 docker build --no-cache -t inf2610-code-runner-image -f \
     .docker/Dockerfile-run . 2>&1 > /dev/null
-docker run -e "DIR=$1" inf2610-code-runner-image "${@:2}"
+argv="$@"
+argc="${#argv[@]}"
+docker run -e "DIR=$1" -e "ARGC=$argc" -e "ARGV=$argv" inf2610-code-runner-image
