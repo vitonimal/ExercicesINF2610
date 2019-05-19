@@ -11,12 +11,6 @@
 #include <stdio.h>
 #include <string.h>
 
-void bootEnvVars(int* argc, char** argv[]) {
-
-    convertArgc(argc);
-    convertArgv(argv);
-}
-
 void convertArgc(int* argc) {
     *argc = atoi(getenv("ARGC"));
 }
@@ -31,5 +25,11 @@ void convertArgv(char** argv[]) {
         printf("argv::: %s\n", argPtr);
         argPtr = strtok(NULL, DELIM);
     }
-    // argv = newArgv;
+    *argv = newArgv;
+}
+
+void bootEnvVars(int* argc, char** argv[]) {
+
+    convertArgc(argc);
+    convertArgv(argv);
 }
