@@ -10,6 +10,7 @@ struct adrv_t
 int main (int argc, char*argv[])
 {
   bootEnvVars(&argc, &argv);
+  printf("argc::: %d", argc);
   if(argc!=3)
   { printf("Deux parametres sont recquis: adresse virtuelle (en decimal)  et taille d'une page (en decimal) \n");
     return 1;
