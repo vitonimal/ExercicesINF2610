@@ -8,18 +8,28 @@
 #define DELIM " "
 
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 
 void bootEnvVars(int* argc, char** argv[]) {
 
-    char** newArgv = calloc(MAX_ARGC, sizeof(char*));
+    convertArgc(argc);
+    convertArgv(argv);
+}
+
+void convertArgc(int* argc) {
     *argc = atoi(getenv("ARGC"));
+}
+
+void convertArgv(char** argv[]) {
+    char** newArgv = calloc(MAX_ARGC, sizeof(char*));
     
     char* argPtr = strtok(getenv("ARGV"), DELIM);
     for (int i = 0; argPtr != NULL; ++i)
     {
         newArgv[i] = argPtr;
-        argPtr = strtok(getenv("ARGV"), DELIM);
+        printf("argv::: %s\n", argPtr);
+        argPtr = strtok(NULL, DELIM);
     }
-    argv = newArgv;
+    // argv = newArgv;
 }
