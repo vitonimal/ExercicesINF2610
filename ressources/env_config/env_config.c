@@ -4,7 +4,7 @@
  * vers les variables argc et argv du programme
 */
 
-#define MAX_ARGC 50
+#define MAX_ARGC 50 // D:
 #define DELIM " "
 
 #include <stdlib.h>
