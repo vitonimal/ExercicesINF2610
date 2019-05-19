@@ -22,7 +22,6 @@ void convertArgv(char** argv[]) {
     for (int i = 0; argPtr != NULL; ++i)
     {
         newArgv[i] = argPtr;
-        printf("argv::: %s\n", argPtr);
         argPtr = strtok(NULL, DELIM);
     }
     *argv = newArgv;
