@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Utilisation: ./run.sh DIRNAME ARGS
 # Arguments:
@@ -7,5 +7,6 @@
 
 docker build --no-cache -t inf2610-code-runner-image -f \
     .docker/Dockerfile-run . 2>&1 > /dev/null
-argv="./a.out ${@:2}"
+argv="$@"
+argv[0]="./a.out"
 docker run -e "DIR=$1" -e "ARGC=$#" -e "ARGV=$argv" inf2610-code-runner-image
