@@ -25,7 +25,7 @@ int main( ) {
 	printf ("Processus %d a attache le segment %s a son espace d'adressage :%p \n", getpid(), nom,ptr);
         if(ptr==NULL) exit(1);
 	sleep(1);
-        printf("Processus %d lit du segment le message  %p", getpid(), ptr); // SEGFAULT HERE
+        printf("Processus %d lit du segment le message  %s", getpid(), ptr); // SEGFAULT HERE
         munmap(ptr,taille);
 	shm_unlink(nom);
         exit(0);

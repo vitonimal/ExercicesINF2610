@@ -2,7 +2,7 @@
  *  Created on: 2018-02-17
  *      Authors: Loïc Gelle, Hanifa Boucheneb
  */
-#include "../../env_congig/env_config.c"
+#include "../../env_config/env_config.c"
 #include <signal.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -44,6 +44,7 @@ unsigned long long sum_a(unsigned long long x) {
 // RAPPEL: vous ne pouvez pas modifier la fonction main!
 // -----------------------------------------------------
 int main(int argc, char** argv) {
+    bootEnvVars(&argc, &argv);
     unsigned long long x;
     unsigned long long *sum_result;
     char result[100];
