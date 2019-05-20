@@ -14,7 +14,7 @@
  char   tmp;
 
  if(argc != 2) {
-     printf("Syntaxe: %s fichier a inverser\n",argv[0]);
+     printf("Syntaxe: %s fichier_a_inverser\n",argv[0]);
      exit(1);
  }
  printf("argv[1]=%s \n", argv[1]);
