@@ -2,7 +2,7 @@
  *  Created on: 2018-02-17
  *      Authors: Loïc Gelle, Hanifa Boucheneb
  */
-
+#include "../../env_congig/env_config.c"
 #include <signal.h>
 #include <unistd.h>
 #include <stdio.h>
