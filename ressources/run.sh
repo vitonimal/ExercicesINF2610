@@ -9,4 +9,4 @@ docker build --no-cache -t inf2610-code-runner-image -f \
     .docker/Dockerfile-run . 2>&1 > /dev/null
 argv="$@"
 # argv[0]="./a.out" TODO
-docker run --privileged -u root -e "DIR=$1" -e "ARGC=$#" -e "ARGV=$argv" inf2610-code-runner-image
+docker run --privileged -e "DIR=$1" -e "ARGC=$#" -e "ARGV=$argv" inf2610-code-runner-image
