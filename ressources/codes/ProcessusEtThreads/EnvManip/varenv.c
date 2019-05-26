@@ -13,12 +13,12 @@ int main(int argc, const char *argv[], const char *envp[]) {
     //for (k = 0; envp[k] != NULL; k++)
     //    printf("%d: %s\n", k, envp[k]);
 
-
-     char *newenviron[] = { "TOKEN_NOCHILD" };
+    int cpid = fork();
+    char *newenviron[] = { "TOKEN_NOCHILD" };
     printf( "No_CHild=%s\n", getenv("TOKEN_NOCHILD")); 
     setenv("TOKEN_NOCHILD","TRUE",1);
-   //  printf( "No_CHild=%s\n", getenv("TOKEN_NOCHILD"));
-     printf("fork=%d\n", fork()); 
+    printf( "No_CHild=%s\n", getenv("TOKEN_NOCHILD"));
+    printf("fork result = %d\n", cpid); 
     return 0;
 }
 
