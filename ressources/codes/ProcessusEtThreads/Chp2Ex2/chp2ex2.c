@@ -4,22 +4,21 @@
 #include <sys/wait.h>
 
 int main() {
-    printf("message0");
-    fflush(stdout);
+
+    setvbuf(stdout, (char *) NULL, _IONBF, 0);
+
+    printf("message0\n");
     if (fork()) {
-        printf("message1");
-        fflush(stdout);
+        printf("message1\n");
         if (fork()) {
-            printf("message2");    
-            fflush(stdout);        
+            printf("message2\n");    
         }
         else {
             exit(0);
         }
     }
     else {
-        printf("message3");
-        fflush(stdout);
+        printf("message3\n");
     }
     return 0;
 }
