@@ -6,12 +6,12 @@
 #include <sys/syscall.h>
 
 void* thread1(void * nused)
-{        printf("ici thread1 %d du processus %d\n", syscall(SYS_gettid), getpid());
+{        printf("ici thread1 %ld du processus %d\n", syscall(SYS_gettid), getpid());
         pthread_exit(NULL);
 }
 
 void* thread2(void * nused)
-{       printf("ici thread2 %d du processus %d\n",syscall(SYS_gettid), getpid());
+{       printf("ici thread2 %ld du processus %d\n",syscall(SYS_gettid), getpid());
         pthread_exit(NULL);
 }
 // threads7.c : threads POSIX = threads noyau sous Linux 
@@ -23,7 +23,7 @@ int main( )
         // attente de la fin des threads
         pthread_join(tid1,NULL);
         pthread_join(tid2,NULL);
-        printf("ici thread principal %d du processus %d \n",syscall(SYS_gettid), getpid());
+        printf("ici thread principal %ld du processus %d \n",syscall(SYS_gettid), getpid());
         return 0;
 }
 
