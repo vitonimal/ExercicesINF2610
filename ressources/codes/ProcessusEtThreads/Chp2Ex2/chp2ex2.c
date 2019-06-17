@@ -5,8 +5,6 @@
 
 int main() {
 
-    setvbuf(stdout, (char *) NULL, _IONBF, 0);
-
     printf("message0\n");
     if (fork()) {
         printf("message1\n");
