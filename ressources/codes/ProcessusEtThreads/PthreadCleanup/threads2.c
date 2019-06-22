@@ -15,7 +15,7 @@ void* mthread(void*inutilise);
 
 int main() {
   pthread_t th;
-  int* pstatus;
+  char* pstatus;
   if(pthread_create(&th,NULL,mthread,NULL) ){
     perror("Erreur dans la création du thread");
     return 1;
@@ -30,7 +30,7 @@ int main() {
     printf("Terminaison normale du thread avec NULL\n");
   }
   else {
-    printf("Terminaison normale du thread avec  %ls.\n", pstatus);
+    printf("Terminaison normale du thread avec %s.\n", pstatus);
   }
   return 0;
 }
@@ -56,7 +56,7 @@ void *mthread(void *inutilise)
     pthread_cleanup_pop(1); // exécute unlink
   }
 
-   return (void*) "success";
+  return (void*) "success";
 }
 
 
