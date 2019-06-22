@@ -10,8 +10,7 @@ struct Operands {
 
 void* add(float a, float b) {
     float sum = a + b;
-    printf("sum: %f", sum);
-    fflush(stdout);
+    printf("sum: %f\n", sum);
     return NULL;
 };
 
