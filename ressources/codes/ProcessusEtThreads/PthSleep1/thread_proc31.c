@@ -20,8 +20,8 @@ int main(int argc, char **argv) {
     return EXIT_SUCCESS;
 }
 void *count(void *arg) {
-    volatile unsigned long long*var = (unsigned long long*) arg;
-    volatile unsigned long long i, r;
+    unsigned long long*var = (unsigned long long*) arg;
+    unsigned long long i, r;
     char mess[100];
     sprintf(mess,"uth %d is going to sleep for 1s \n", pth_self());
     for (i = 0; i < MAX; i++)

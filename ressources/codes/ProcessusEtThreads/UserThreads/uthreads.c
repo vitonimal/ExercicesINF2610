@@ -6,8 +6,8 @@ static volatile unsigned long long counter = 0;
 #define MAX 1000000000
 
 void* count(void *arg) {
-    unsigned long long*receivedValue = (unsigned long long*) arg;
-    unsigned long long i;
+    volatile unsigned long long*receivedValue = (unsigned long long*) arg;
+    volatile unsigned long long i;
     for (i = 0; i < MAX; i++) {
         *receivedValue += 1;
     }
