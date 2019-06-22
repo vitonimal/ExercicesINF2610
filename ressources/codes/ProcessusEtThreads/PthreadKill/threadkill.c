@@ -7,13 +7,14 @@
 #include <errno.h>
 #include <string.h>
 
-void action (int signum) {
+void sigIntHandler (int signum) {
   printf( "signal %d recu \n", signum);
 }
 
-void * fonction (void * x) {
-  signal(SIGINT, action);
-  printf("ici thread %lu, je vais me mettre en pause \n", pthread_self()); pause(); 
+void * action (void * x) {
+  signal(SIGINT, sigIntHandler);
+  printf("ici thread %lu, je vais me mettre en pause \n", pthread_self());
+  pause(); 
   printf("ici thread %lu, je vais terminer \n", pthread_self());
   pthread_exit(0);
 }
@@ -21,7 +22,7 @@ void * fonction (void * x) {
 int main(){
   int pid;
   pthread_t tid;
-  pthread_create (&tid, NULL, fonction, NULL);
+  pthread_create (&tid, NULL, action, NULL);
   pid = fork();
   if( pid==0){
     printf( "ici processus fils %d, le thread de mon pere est %lu\n", getpid(), tid);
