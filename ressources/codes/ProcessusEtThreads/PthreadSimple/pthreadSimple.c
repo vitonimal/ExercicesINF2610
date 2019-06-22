@@ -3,8 +3,7 @@
 #include <unistd.h>
 
 void* action() {
-    printf("Ici un thread!");
-    fflush(stdout);
+    printf("Ici un thread!\n");
     return NULL;
 }
 
