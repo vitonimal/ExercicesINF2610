@@ -21,7 +21,7 @@ int main() {
     return 1;
   }
   sleep(2);
-  //  pthread_cancel(th); // pour forcer la terminaison du thread
+  // pthread_cancel(th); // pour forcer la terminaison du thread
   pthread_join(th, (void**) &pstatus); // attendre la fin du thread
   if(pstatus == PTHREAD_CANCELED) {
     printf("Terminaison forcee du thread \n");
