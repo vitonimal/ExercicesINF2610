@@ -17,8 +17,7 @@ void* add(float a, float b) {
 
 void* addWrapper(void* args) {
     struct Operands* ops = (struct Operands*) args;
-    add(ops->operandA, ops->operandB);
-    return NULL;
+    return add(ops->operandA, ops->operandB);
 }
 
 int main() {
