@@ -2,14 +2,14 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <pth.h>
-static unsigned long long a = 0;
+static unsigned long long counter = 0;
 #define MAX 1000000000
 
 void* count(void *arg) {
-    volatile unsigned long long*var = (unsigned long long*) arg;
+    volatile unsigned long long*receivedValue = (unsigned long long*) arg;
     volatile unsigned long long i;
     for (i = 0; i < MAX; i++) {
-        *var = *var + 1;
+        *receivedValue += 1;
     }
     return NULL;
 }
@@ -19,13 +19,13 @@ int main( ) {
     
     pth_init();
     
-    t1=pth_spawn(PTH_ATTR_DEFAULT,count, &a);
-    t2=pth_spawn(PTH_ATTR_DEFAULT,count, &a);
+    t1=pth_spawn(PTH_ATTR_DEFAULT,count, &counter);
+    t2=pth_spawn(PTH_ATTR_DEFAULT,count, &counter);
 
     pth_join(t1,NULL);
     pth_join(t2,NULL);
     
-    printf("pid= %d a=%llu\n", getpid(), a); 
+    printf("pid= %d a=%llu\n", getpid(), counter); 
     
     return 0;
 } 
