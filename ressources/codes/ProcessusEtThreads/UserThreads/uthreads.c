@@ -25,7 +25,7 @@ int main( ) {
     pth_join(t1,NULL);
     pth_join(t2,NULL);
     
-    printf("pid= %d a=%llu\n", getpid(), counter); 
+    printf("pid= %d counter=%llu\n", getpid(), counter); 
     
     return 0;
 } 
