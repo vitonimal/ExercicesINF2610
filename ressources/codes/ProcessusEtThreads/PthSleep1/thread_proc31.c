@@ -3,9 +3,12 @@
 #include <stdio.h>
 #include <sys/types.h>
 #include <pth.h>
+
 static unsigned long long a = 0;
 #define MAX 1000000000
+
 void *count(void *arg);
+
 int main(int argc, char **argv) {
     pth_init();
     pth_t t1, t2;
