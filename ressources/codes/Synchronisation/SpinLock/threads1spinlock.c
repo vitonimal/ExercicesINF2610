@@ -11,9 +11,9 @@ void* inc_dec(void * x)
 	for(i=0; i<100000; i++)
 	{	pthread_spin_lock(&lock);
 		glob = glob + pas ;
-		for(j=0; j<50000; j++);
+		for(j=0; j<50000; j++); // attente active dans la section critique
 		pthread_spin_unlock(&lock);
-		// for(j=0; j<50000; j++);
+		// for(j=0; j<50000; j++); // attente active en dehors de la section critique
 	}
         printf("ici inc_dec(%d), glob = %d, thread_id = %lu, pid=%d\n", pas, glob, pthread_self(), getpid());
         pthread_exit(NULL);
