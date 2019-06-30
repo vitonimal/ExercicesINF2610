@@ -47,6 +47,7 @@ void* prod(void* arg) {
         sem_wait(&args->libre);
         buf[ip] = objAInserer;
         sem_post(&args->occupe);
+        printf("prod: buf[%d]=%d\n", ip, objAInserer);
         objAInserer++;
         nbProd++;
         ip = (ip + 1) % BUFF_SIZE;
@@ -66,6 +67,7 @@ void* cons(void* arg) {
         sem_wait(&args->occupe);
         objRecupere = buf[ic];
         sem_post(&args->libre);
+        printf("cons: buf[%d]=%d\n", ic, objRecupere);
         nbCons++;
         ic = (ic + 1) % BUFF_SIZE;
     }
