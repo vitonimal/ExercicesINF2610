@@ -10,7 +10,7 @@ DWORD WINAPI ThreadAction( LPVOID lpParam )
 
 void main () {
 
-    HANDLE threadHandle = CreateThread(NULL, 0, ThreadAction, "Hello Win32!", 0, NULL);
+    HANDLE threadHandle = CreateThread(NULL, 0, ThreadAction, (LPVOID) "Hello Win32!", 0, NULL);
     WaitForSingleObject(threadHandle, INFINITE);
     
 }
