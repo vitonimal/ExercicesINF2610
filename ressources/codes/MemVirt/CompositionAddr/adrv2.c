@@ -19,9 +19,9 @@ int main (int argc, char*argv[])
   unsigned long adrvDecimal=strtoul(argv[1], NULL, 0);
   unsigned long pagesizeDecimal =strtoul(argv[2], NULL, 0);
   
-  adv->pagenum = adrvDecimal / pagesizeDecimal;
-  adv->offset = adrvDecimal % pagesizeDecimal;
+  adv->pagenum = 0x00; // TODO
+  adv->offset = 0x00; // TODO
   printf("adrv(decimal)=%lu, adrv(hex)=%lX, pagenum(decimal)=%lu, offset(decimal)=%lu \n",adrvDecimal,adrvDecimal,adv->pagenum, adv->offset);
- return 0;
+  return 0;
 }
 
