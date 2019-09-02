@@ -12,15 +12,15 @@ int main( ) {
 	    exit(1);
     } else if (fork()==0) { // second  fils
 	       printf("Le second fils de pid=%d va se transformer \n",getpid());
-                char* Env[]={"PWD=../", NULL};
-	    	execle("/bin/ls","ls", "-l",NULL,Env);	
-	    	printf("echec de execle de ls ../\n");
-           	 exit(1);
-    		} else  {
-    		if ((status=wait(NULL)) > 0)
-        	   printf("fin du fils de pid=%d\n", status);
-    		if ((status=wait(NULL))>0)
-        	   printf("fin du fils de pid=%d\n", status);
+            char* params[]={"ls", "-a", NULL};
+			execv("/bin/ls",params);
+			printf("echec de execv de ls -a/\n");
+				exit(1);
+			} else  {
+			if ((status=wait(NULL)) > 0)
+				printf("fin du fils de pid=%d\n", status);
+			if ((status=wait(NULL))>0)
+				printf("fin du fils de pid=%d\n", status);
 	}
     return 0;
 }
