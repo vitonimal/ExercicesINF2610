@@ -12,7 +12,7 @@ int main( ) {
 	     execve("./fils",args,env);
 	     printf("echec de execvpe \n");
 	     exit(1);
-       } // pÃre
+       } // pï¿½re
     int pid, status; 
     pid=wait(&status);
     printf("fin du fils %d axec %d\n", pid, WEXITSTATUS(status));
