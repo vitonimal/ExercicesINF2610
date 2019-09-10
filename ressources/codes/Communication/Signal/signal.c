@@ -3,20 +3,13 @@
 #include <unistd.h>
 
 void sigintHandler(int num) {
-    printf("Eh bien! Vous avez appuye sur CTRL+C\n");
+    printf("signal SIGINT reçu par %d\n",getpid());
 }
-
 int main() {
-
-    printf("Nous allons utiliser la fonction signal pour assigner un gestionnaire personnalise a SIGING\n");
-    printf("Le programme se terminera apres avoir execute le gestionnaire\n");
+    printf("assigner un gestionnaire personnalise a SIGINT\n");
     signal(SIGINT, sigintHandler);
-
-    printf("Voila!\n");
-    printf("On se met maintenant en attente de SIGINT, Appuyez sur CTRL+C!\n");
-    
+    printf("c’est fait!\n");
+    printf("appuyez sur CTRL+C!\n");
     pause();
-
     return 0;
-
 }
