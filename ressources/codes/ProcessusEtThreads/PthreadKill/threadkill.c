@@ -6,37 +6,36 @@
 #include <sys/wait.h>
 #include <errno.h>
 #include <string.h>
+#include <sys/syscall.h>
 
 void sigIntHandler (int signum) {
-  printf( "signal %d recu \n", signum);
+    printf( "signal %d recu  par %ld \n", signum, syscall(SYS_gettid));
+ //    pthread_exit((void*)-1);
 }
 
-void * action (void * x) {
-  signal(SIGINT, sigIntHandler);
-  printf("ici thread %lu, je vais me mettre en pause \n", pthread_self());
+void * action (void * unused) {
+ // signal(SIGINT, sigIntHandler); 
+  printf("Thread %ld se met en pause \n", syscall(SYS_gettid));
   pause(); 
-  printf("ici thread %lu, je vais terminer \n", pthread_self());
-  pthread_exit(0);
+  printf("Thread %ld se termine \n", syscall(SYS_gettid));
+  pthread_exit(NULL);
 }
 
 int main(){
-  int pid;
-  pthread_t tid;
-  pthread_create (&tid, NULL, action, NULL);
-  pid = fork();
-  if( pid==0){
-    printf( "ici processus fils %d, le thread de mon pere est %lu\n", getpid(), tid);
-	  sleep(1); printf(" ici fils, envoie du signal SIGCONT au thread de mon pere %d\n",
-	  pthread_kill(tid,SIGCONT)); sleep(1);
-	  pthread_kill(tid,SIGINT);  sleep(1); 
-	  printf("ici fils envoie de SIGINT au pere %d\n", kill(getppid(),SIGINT));
-	  printf("ici fils envoie de SIGKILL au pere %d\n", kill(getppid(),SIGKILL));
-	  printf( "ici fils va terminer %s\n", strerror(errno) ); 
-  }
-  else {
-    pthread_join(tid, NULL); printf("ici pere fin du thread detectee \n"); wait(NULL); 
-  }
-  
-  return 0;
+    void *pstatus;
+    pthread_t tid;
+    pthread_create (&tid, NULL, action, NULL);
+    // sleep(1);
+    printf("Thread %ld envoie SIGINT (%d) au thread  \n", syscall(SYS_gettid), SIGINT);
+    pthread_kill(tid, SIGINT);
+    printf("Thread %ld attend la fin du thread \n",  syscall(SYS_gettid) );
+    pthread_join(tid,&pstatus);
+    if (pstatus==NULL || pstatus!=PTHREAD_CANCELED)
+    {
+      printf(" Fin normale du thread crÃ©Ã© \n");
+    }
+    else {
+      printf(" Fin forcee du thread crÃ©Ã© \n");
+    }
+    return 0;
 }
-

@@ -23,11 +23,18 @@ int main() {
     pthread_cancel(th);
     //
     pthread_join(th, (void**) &pstatus);
-    if(pstatus == PTHREAD_CANCELED) {    printf("\n Terminaison forcÃ©e\n"); }
-    else   if(pstatus== NULL) {    printf("Terminaison normale avec NULL\n");}
-    else {   printf("Terminaison normale avec %p.\n", pstatus);
+    if(pstatus == PTHREAD_CANCELED) { 
+        printf("\n Terminaison forcÃ©e\n");
+    }
+    else if(pstatus== NULL) {
+        printf("Terminaison normale avec NULL\n");
+    }
+    else {
+        printf("Terminaison normale avec %p.\n", pstatus);
         for(int i=0; i<5;i++)
-        { printf("tab[%d]=%d ", i, pstatus[i]);}
+        { 
+            printf("tab[%d]=%d ", i, pstatus[i]);
+        }
         printf("\n");
         free(pstatus);
     }
@@ -36,18 +43,19 @@ int main() {
 
 
 void *mthread(void *taille)
-{    setvbuf(stdout, (char *) NULL, _IONBF, 0);
+{    
+    setvbuf(stdout, (char *) NULL, _IONBF, 0);
     int*tab = (int*) malloc ( (long)taille*sizeof(int));
     if (tab!=NULL)
     {   // pour les variantes 2 et 3
         pthread_cleanup_push(mfree, (void*) tab);
         //
         for (long i=0; i<(long)taille; i++) {
-        tab[i]=i;
-        printf("%ld sur %ld ",i,(long)taille-1);
-        usleep(50000); // pour ralentir le traitement, attendre 5ms
+            tab[i]=i;
+            printf("%ld sur %ld ",i,(long)taille-1);
+            usleep(50000); // pour ralentir le traitement, attendre 5ms
         }
-         printf("fin \n");
+        printf("fin \n");
         // pour la variante 3
         pthread_setcancelstate(PTHREAD_CANCEL_DISABLE,NULL);
         //
@@ -56,7 +64,7 @@ void *mthread(void *taille)
         // pour la variante 3
         sleep(5);
     }
-        pthread_exit ((void*) tab);
+    pthread_exit ((void*) tab);
 }
 
 
