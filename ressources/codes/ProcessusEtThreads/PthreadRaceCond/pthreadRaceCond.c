@@ -8,7 +8,7 @@
 long a=0;
 void* thread_funct(void * p)
 {      
-	printf("thread exÃ©cutant thread_funct(%ld)\n", (long)p);
+    printf("thread exÃ©cutant thread_funct(%ld)\n", (long)p);
     for(long i=0;i<(long)p;i++) a++;
     pthread_exit(NULL);
 }
